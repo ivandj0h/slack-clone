@@ -10,25 +10,19 @@ git clone https://github.com/ivandi1980/slack-clone.git
 then, install the dependencies:
 
 ```bash
-npm install
-# or
-yarn
-# or
-pnpm
-# or
-bun
+bun install
 ```
 
 After that, run the development server with the following command :
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun run dev
+```
+
+While you run the Development Server, you can run the following command to run the `Convex Database`:
+
+```bash
+bunx convex dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -42,4 +36,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## Screen Shoot
+
+Here is the Screen Shoot of the Slack Clone:
+
 ![Auth](/public/assets/auth.png)
