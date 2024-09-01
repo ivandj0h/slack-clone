@@ -9,9 +9,7 @@ const generateCode = () => {
       length: 10,
     },
     () =>
-      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"[
-        Math.floor(Math.random() * 62)
-      ],
+      "0123456789abcdefghijklmnopqrstuvwxyz"[Math.floor(Math.random() * 62)],
   ).join("");
 
   return code;
@@ -76,24 +74,11 @@ export const get = query({
 
 // This is a query that gets a workspace by its ID
 export const getById = query({
-  args: {
-    id: v.id("workspaces"),
-  },
+  args: { id: v.id("workspaces") },
   handler: async (ctx, args) => {
     const userId = await auth.getUserId(ctx);
 
-    if (!userId) {
-      throw new Error("Not authenticated");
-    }
-
-    const member = await ctx.db
-      .query("members")
-      .withIndex("by_workspace_id_user_id_", (q) =>
-        q.eq("workspaceId", args.id).eq("userId", userId),
-      )
-      .unique();
-
-    if (!member) return null;
+    if (!userId) throw new Error("Not authenticated");
 
     return await ctx.db.get(args.id);
   },
